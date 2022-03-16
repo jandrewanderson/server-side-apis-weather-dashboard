@@ -13,6 +13,8 @@ fiveDays();
 
 //TODO: 
 
+    //create a function that will gather data from the api
+    
     //create a function that will capture the value of the search bar and add it to the api address
         //save these searches to local storage. 
 
@@ -25,6 +27,6 @@ fiveDays();
         //remember to take the 7 day forecast and only show 5 (var i=0; i<5; i++)
         //remember to take the lat and lon from current weather and insert the data from that specifically
     
-    //create a function that will 
+    
     
     
