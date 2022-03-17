@@ -4,12 +4,18 @@ var lat;
 var innerWeather = document.getElementById('inner-weather');
 //var for the search input
 var search = document.getElementById('search');
-var cityBtn = document.getElementById('city-btn');
 var cityBtnContainer = document.getElementById('city-btn-container');
 
 //var for search button
 var searchBtn = document.getElementById('search-btn');
 
+//var for the city button
+var cityBtn = document.getElementById('city-btn');
+var cityBtnValue;
+
+//var for the local storage value
+var storageValue = localStorage.getItem('search-value');
+var newSearchValue = localStorage.getItem('new-search-value')
 //function that will capture the value of the search bar and add it to the api address
     
 searchBtn.addEventListener('click', function(event){
@@ -19,7 +25,39 @@ searchBtn.addEventListener('click', function(event){
     localStorage.setItem('search-value', search.value);
     requestCurrent();
     currentDay();
+    createBtn();
 })
+
+//create a function that will dynamically add a button of whatever city was searched in the input (search bar)
+    //create another function that will capture saves searches from local storage and create a button for the cities that were stored there.
+function createBtn(){
+    var cityBtnCreate = document.createElement("button");
+    cityBtnCreate.classList.add('city-btn-create');
+    cityBtnCreate.textContent = (search.value || storageValue);
+    cityBtnContainer.appendChild(cityBtnCreate);
+}
+
+// call createBtn when page loads to getItem from local storage.
+    //note: it is being called in the searchBtn function as well.
+createBtn();
+newSearchBtn();
+//the function that will make the search button 
+function newSearchBtn(){
+    
+    localStorage.setItem('new-search-value', newSearchValue);
+    cityBtnValue = (storageValue || newSearchValue);
+    console.log(cityBtnValue)
+    requestCurrent();
+    currentDay();
+    
+}
+
+cityBtn.addEventListener('click', function(event){
+    event.preventDefault();
+    console.log(event);
+});
+
+
 
 //this is the function for current day added to the correct area of the html
 function currentDay(){
@@ -40,7 +78,8 @@ function fiveDays(){
     //function to gather data from current weather API
 function requestCurrent(){
 
-    var requestUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + search.value +'&units=imperial&APPID=65293d15fd1af0117bccda69dffb91bb'
+    var requestUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + (search.value || cityBtnValue) +'&units=imperial&APPID=65293d15fd1af0117bccda69dffb91bb'
+    console.log(requestUrl);
 
     fetch(requestUrl)
     .then(function(response) {
@@ -70,7 +109,7 @@ function requestCurrent(){
     }
 }
 
-    
+//TODO: FIGURE OUT WHY THE ICON SYMBOL IS NOT SHOWING UP IN THE 5 DAY FORECAST. 
     
     //function that gathers data from the open weather API
 function requestFiveDays(){
@@ -157,16 +196,3 @@ function requestFiveDays(){
         humidity5.textContent = "Hum: " + data2.daily[4].humidity + " %";
     }
 }
-
-
-
-    
-    //TODO: 
-    
-        //create a function that will dynamically add a button of whatever city was searched in the input (search bar)
-            //create another function that will capture saves searches from local storage and create a button for the cities that were stored there.
-
-    
-    
-    
-    
