@@ -58,7 +58,6 @@ function requestCurrent(){
         var curTemp = document.getElementById('cur-temp');
         var curWind = document.getElementById('cur-wind');
         var curHumidity = document.getElementById('cur-humidity');
-        // var curUv = document.getElementById('cur-uv');
         var icon = data.weather[0].icon;
         var iconUrl = `http://openweathermap.org/img/wn/${icon}@2x.png`
         iconImg.src = iconUrl
@@ -66,7 +65,6 @@ function requestCurrent(){
         curTemp.textContent = "Temp: " + data.main.temp + "°F";
         curWind.textContent = "Wind: " + data.wind.speed + " mph";
         curHumidity.textContent = "Humidity: " + data.main.humidity + "%";
-        // curUv.textContent = data.
         lon = data.coord.lon;
         lat = data.coord.lat;
     }
@@ -86,35 +84,77 @@ function requestFiveDays(){
     })
     .then(function(data2) {
         console.log(data2);
-        var fiveDayTable;
-        for (var i=0; i<6; i++) {
-            fiveDayTable = `
-                <div id="inner-5">
-                    <h5 id="date-1"></h5>
-                    <p id="icon-2"></p>
-                    <p id="temp"></p>
-                    <p id="wind"></p>
-                    <p id="humitidy"></p>
-                </div>
-            `
-            innerWeather.appendChild(fiveDayTable);
-        }
+        
         insertData2(data2);
+        insertData3(data2);
+        insertData4(data2);
+        insertData5(data2);
+        insertData6(data2);
         fiveDays();
         })
 
         //function that inserts data from open weather
     function insertData2(data2){
+        var iconImg1 = document.getElementById('icon-1');
+        var temp1 = document.getElementById('temp-1');
+        var wind1 = document.getElementById('wind-1');
+        var humidity1 = document.getElementById('humitidy-1');
+        var curUv = document.getElementById('cur-uv');
+        var icon1 = data2.daily[0].weather[0].icon;
+        var icon1Url = `http://openweathermap.org/img/wn/${icon1}@2x.png`
+        iconImg1.src = icon1Url;
+        temp1.textContent = "Temp: " + data2.daily[0].temp.max + "°F";
+        wind1.textContent = "Wind: " + data2.daily[0].wind_speed + " mph";
+        humidity1.textContent = "Hum: " + data2.daily[0].humidity + " %";
+        curUv.textContent = "Uv Index: " + data2.daily[0].uvi;
+    }
+    function insertData3(data2){
         var iconImg2 = document.getElementById('icon-2');
-        var temp = document.getElementById('temp');
-        var wind = document.getElementById('wind');
-        var humidity = document.getElementById('humidity');
-        var icon2 = data2.daily[i].weather[0].icon;
-        var icon2Url = `http://openweathermap.org/img/wn/${icon2}@2x.png`;
+        var temp2 = document.getElementById('temp-2');
+        var wind2 = document.getElementById('wind-2');
+        var humidity2 = document.getElementById('humitidy-2');
+        var icon2 = data2.daily[1].weather[0].icon;
+        var icon2Url = `http://openweathermap.org/img/wn/${icon2}@2x.png`
         iconImg2.src = icon2Url;
-        temp.textContent = "Temp: " + data2.daily[i].temp.max + "°F";
-        wind.textContent = data2.daily[i].weather[0].wind_speed + " mph";
-        humidity.textContent = data.main.humidity + "%";
+        temp2.textContent = "Temp: " + data2.daily[1].temp.max + "°F";
+        wind2.textContent = "Wind: " + data2.daily[1].wind_speed + " mph";
+        humidity2.textContent = "Hum: " + data2.daily[1].humidity + " %";
+    }
+    function insertData4(data2){
+        var iconImg3 = document.getElementById('icon-3');
+        var temp3 = document.getElementById('temp-3');
+        var wind3 = document.getElementById('wind-3');
+        var humidity3 = document.getElementById('humitidy-3');
+        var icon3 = data2.daily[2].weather[0].icon;
+        var icon3Url = `http://openweathermap.org/img/wn/${icon3}@2x.png`
+        iconImg3.src = icon3Url;
+        temp3.textContent = "Temp: " + data2.daily[2].temp.max + "°F";
+        wind3.textContent = "Wind: " + data2.daily[2].wind_speed + " mph";
+        humidity3.textContent = "Hum: " + data2.daily[2].humidity + " %";
+    }
+    function insertData5(data2){
+        var iconImg4 = document.getElementById('icon-4');
+        var temp4 = document.getElementById('temp-4');
+        var wind4 = document.getElementById('wind-4');
+        var humidity4 = document.getElementById('humitidy-4');
+        var icon4 = data2.daily[3].weather[0].icon;
+        var icon4Url = `http://openweathermap.org/img/wn/${icon4}@2x.png`
+        iconImg4.src = icon4Url;
+        temp4.textContent = "Temp: " + data2.daily[3].temp.max + "°F";
+        wind4.textContent = "Wind: " + data2.daily[3].wind_speed + " mph";
+        humidity4.textContent = "Hum: " + data2.daily[3].humidity + " %";
+    }
+    function insertData6(data2){
+        var iconImg5 = document.getElementById('icon-5');
+        var temp5 = document.getElementById('temp-5');
+        var wind5 = document.getElementById('wind-5');
+        var humidity5 = document.getElementById('humitidy-5');
+        var icon5 = data2.daily[4].weather[0].icon;
+        var icon5Url = `http://openweathermap.org/img/wn/${icon5}@2x.png`
+        iconImg5.src = icon5Url;
+        temp5.textContent = "Temp: " + data2.daily[4].temp.max + "°F";
+        wind5.textContent = "Wind: " + data2.daily[4].wind_speed + " mph";
+        humidity5.textContent = "Hum: " + data2.daily[4].humidity + " %";
     }
 }
 
@@ -125,12 +165,6 @@ function requestFiveDays(){
     
         //create a function that will dynamically add a button of whatever city was searched in the input (search bar)
             //create another function that will capture saves searches from local storage and create a button for the cities that were stored there.
-    
-        //create a function that will dynamically add current weather
-    
-        //create a function that will dynamically add in the five day forecast.
-            //remember to take the 7 day forecast and only show 5 (var i=0; i<5; i++)
-            //remember to take the lat and lon from current weather and insert the data from that specifically
 
     
     

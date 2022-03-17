@@ -114,9 +114,9 @@
     background-color: rgb(78, 83, 131);
     background: linear-gradient(to right, rgb(78, 83, 131), rgb(73, 73, 73));
     color: white;
-    width: 10rem;
+    width: 18rem;
     padding: 0.5rem;
-    margin: 1rem;
+    margin: 0.2rem;
 }
 
 @media (min-width: 0px) {
