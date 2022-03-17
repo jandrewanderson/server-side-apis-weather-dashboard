@@ -47,11 +47,11 @@ newSearchBtn();
 //the function that will make the search button 
 function newSearchBtn(){
     
-    localStorage.setItem('new-search-value', newSearchValue);
+    // localStorage.setItem('new-search-value', newSearchValue);
     cityBtnValue = (storageValue || newSearchValue);
     console.log(cityBtnValue)
     requestCurrent();
-    currentDay();
+    // currentDay();
     
 }
 
