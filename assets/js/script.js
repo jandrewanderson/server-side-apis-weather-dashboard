@@ -37,6 +37,9 @@ function createBtn(){
     cityBtnContainer.appendChild(cityBtnCreate);
 }
 
+//TODO: FIGURE OUT WHY THIS BUTTON IS NOT STORING INTO LOCAL STORAGE AS DIFFERENT ITEMS. AS WELL AS FIGURING OUT WHY THE EVENT LISTENER DOESNT WORK.
+
+
 // call createBtn when page loads to getItem from local storage.
     //note: it is being called in the searchBtn function as well.
 createBtn();
